@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "van-row": "../../miniprogram_npm/vant-weapp/row",
+    "van-col": "../../miniprogram_npm/vant-weapp/col",
+    "sort-unit": "../components/sort-unit"
+  }
+}

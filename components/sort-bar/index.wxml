@@ -1,0 +1,6 @@
+<!--components/sort-bar/index.wxml-->
+<van-row>
+  <van-col span='{{24 / items.length}}' wx:for='{{items}}' wx:for-index='index' wx:for-item='item' wx:key='{{item.id}}'>
+    <sort-unit title='{{item.title}}' class='sort-cell' bind:ordered='onItemFocused' data-id='{{item.id}}' activate='{{currentId ? currentId === item.id : (0 === index ? true : false)}}'></sort-unit>
+  </van-col>
+</van-row>

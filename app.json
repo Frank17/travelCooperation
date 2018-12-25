@@ -1,12 +1,44 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/publication/publication",
+    "pages/me/me"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+  "tabBar": {
+    "color": "#6200ee",
+    "selectedColor": "#3700b3",
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "icons/home_1.png",
+        "selectedIconPath": "selected_icons/home_1.png"
+      },
+      {
+        "pagePath": "pages/publication/publication",
+        "text": "发布",
+        "iconPath": "icons/add_8.png",
+        "selectedIconPath": "selected_icons/add_8.png"
+      }, {
+        "pagePath": "pages/me/me",
+        "text": "个人中心",
+        "iconPath": "icons/my.png",
+        "selectedIconPath": "selected_icons/my.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6200ee",
+    "navigationBarTitleText": "大学生协同出游",
+    "navigationBarTextStyle": "light",
+    "backgroundColor": "#fafafa"
   }
 }

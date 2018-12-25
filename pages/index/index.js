@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+import { BAR_ITEMS } from '../../resources/sortable-items.js'
 const app = getApp()
 
 Page({
@@ -7,12 +8,30 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    wxSearchData: {},
+    searchfocused: false,
+    barItems: BAR_ITEMS
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
+    })
+  },
+  onSearchFocused(e) {
+    this.setData({ searchfocused: true })
+  },
+  onSearchUnfocused(e) {
+    this.setData({ searchfocused: false })
+  },
+  onSearchCanceled(e) {
+    this.setData({ searchfocused: false })
+  },
+  onOrdered(e) {
+    // 对数据进行排序
+    wx.showToast({
+      title: `${e.detail.byTitle}, ${e.detail.byId}, ${e.detail.asc ? '升序' : '降序'}排列`,
     })
   },
   onLoad: function () {

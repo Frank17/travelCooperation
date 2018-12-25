@@ -19,3 +19,15 @@
 .usermotto {
   margin-top: 200px;
 }
+
+.search-container {
+  width: 100%;
+}
+
+.sort-row {
+  width: 100%;
+}
+
+.sort-cell {
+  width: 80%;
+}

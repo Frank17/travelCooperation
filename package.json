@@ -1,0 +1,23 @@
+{
+  "name": "travelcooperation",
+  "version": "1.0.0",
+  "description": "大学生出游协同工具",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frank17/travelCooperation.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Frank17/travelCooperation/issues"
+  },
+  "homepage": "https://github.com/Frank17/travelCooperation#readme",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "vant-weapp": "^0.4.10"
+  }
+}
