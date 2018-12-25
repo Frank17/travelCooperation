@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 import { BAR_ITEMS } from '../../resources/sortable-items.js'
+import { getData } from '../../api.js'
 const app = getApp()
 
 Page({
@@ -11,7 +12,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     wxSearchData: {},
     searchfocused: false,
-    barItems: BAR_ITEMS
+    barItems: BAR_ITEMS,
+    activities: [],
   },
   //事件处理函数
   bindViewTap: function() {
@@ -34,7 +36,20 @@ Page({
       title: `${e.detail.byTitle}, ${e.detail.byId}, ${e.detail.asc ? '升序' : '降序'}排列`,
     })
   },
+  onActivityTap(e) {
+    console.log(e)
+  },
   onLoad: function () {
+    getData('https://traval.com/activities/')
+      .then(res => {
+        this.setData({
+          activities: res.data
+        })
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

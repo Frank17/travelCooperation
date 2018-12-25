@@ -1,0 +1,98 @@
+/* components/activity-cell/index.wxss */
+
+.activity-cell-container {
+  display: flex;
+  display: -webkit-flex;
+  flex: 1;
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+  margin-bottom: 12rpx;
+}
+
+.activity-cell-bg {
+  display: flex;
+  display: -webkit-flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1000;
+}
+
+.activity-cell-mask {
+  background: rgba(0, 0, 0, 0.55);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  position: absolute;
+  z-index: 20000;
+  padding: 24rpx;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.activity-cell-title-cotainer {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+}
+
+.activity-status-tag {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  z-index: 2000;
+}
+
+.activity-cell-title {
+  color: #fff;
+  font-size: 38rpx;
+  margin-top: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.activity-cell-detail-container {
+  max-height: 240rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  color: #ffffff;
+}
+
+.activity-cell-detail {
+  color: #fff;
+  font-size: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.activity-cell-attr-container {
+  color: #BDBDBD;
+  font-size: 24rpx;
+  margin-top: 16rpx;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+}
+
+.activity-cell-attr {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  margin-right: 16rpx;
+}
+
+.activity-cell-attr van-icon {
+  margin-right: 6rpx;
+}
+
+.activity-attend {
+  position: absolute;
+  z-index: 100000;
+}

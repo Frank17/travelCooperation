@@ -1,0 +1,27 @@
+<!--components/activity-cell/index.wxml-->
+<view class='activity-cell-container' bind:tap='onTap' bind:longpress='onLongTap'>
+  <image src='{{activity.bg ? activity.bg : "../../resources/imgs/timg.jpeg"}}' class='activity-cell-bg' mode='aspectFill'></image>
+  <view class='activity-cell-mask'>
+    <view class='activity-cell-title-cotainer'>
+      <van-tag type='{{tagType}}' class='activity-status-tag'>{{tagTitle}}</van-tag>
+      <label class='label-block activity-cell-title'>{{activity.title}}</label>
+    </view>
+    <view class='activity-cell-detail-container'>
+      <label class='label-block activity-cell-detail'>{{activity.detail}}</label>
+    </view>
+    <view class='activity-cell-attr-container'>
+      <view class='activity-cell-attr'>
+        <van-icon name='location' color='#64B5F6' size='22rpx' />
+        <label>{{activity.address}}</label>
+      </view>
+      <view class='activity-cell-attr'>
+        <van-icon name='underway' color='#FFA726' size='22rpx' />
+        <label>{{activity.start}} - {{activity.end}}</label>
+      </view>
+      <view class='activity-cell-attr'>
+        <van-icon name='like' color='#EF5350' size='22rpx' />
+        <label>{{activity.members}}人参与</label>
+      </view>
+    </view>
+  </view>
+</view>

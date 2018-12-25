@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Frank17/travelCooperation#readme",
   "dependencies": {
     "lodash": "^4.17.11",
+    "mockjs": "^1.0.1-beta3",
     "vant-weapp": "^0.4.10"
   }
 }

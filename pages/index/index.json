@@ -3,6 +3,7 @@
     "van-search": "../../miniprogram_npm/vant-weapp/search",
     "van-row": "../../miniprogram_npm/vant-weapp/row",
     "van-col": "../../miniprogram_npm/vant-weapp/col",
-    "sort-bar": "../../components/sort-bar"
+    "sort-bar": "../../components/sort-bar",
+    "activity-cell": "../../components/activity-cell"
   }
 }

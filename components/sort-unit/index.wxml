@@ -2,7 +2,7 @@
 <view class='sort-container' bindtap='onOrdered' style='background-color: {{activate ? "#F5F5F5;" : "#ffffff;"}}'>
   <label class='sort-title'>{{title}}</label>
   <view class='sort-icon-container'>
-    <van-icon name="arrow-up" size='16rpx' class='order-icon' custom-style='margin: 0rpx; padding: 0rpx;' color='{{activate ? asc ? "#FF3D00" : "#000000" : "#000000"}}' />
-    <van-icon name="arrow-down" size='16rpx' class='order-icon' color='{{activate ? asc ? "#000000" : "#FF3D00" : "#000000"}}' custom-style='margin: 0rpx; padding: 0rpx;' />
+    <van-icon name="arrow-up" size='16rpx' class='order-icon' custom-style='margin: 0rpx; padding: 0rpx;' color='{{activate ? asc ? "#EF5350" : "#000000" : "#000000"}}' />
+    <van-icon name="arrow-down" size='16rpx' class='order-icon' color='{{activate ? asc ? "#000000" : "#EF5350" : "#000000"}}' custom-style='margin: 0rpx; padding: 0rpx;' />
   </view>
 </view>

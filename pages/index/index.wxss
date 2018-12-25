@@ -1,4 +1,5 @@
 /**index.wxss**/
+@import '../../icons/fonts/ionicons.wxss';
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -26,8 +27,14 @@
 
 .sort-row {
   width: 100%;
+  margin-bottom: 16rpx;
 }
 
 .sort-cell {
   width: 80%;
+}
+
+.activity-area {
+  width: 100%;
+  margin-top: 4rpx;
 }
