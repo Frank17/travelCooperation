@@ -38,3 +38,28 @@
   width: 100%;
   margin-top: 4rpx;
 }
+
+.publish-button {
+  position: fixed;
+  right: 20rpx;
+  bottom: 100rpx;
+  z-index: 50000;
+  background: #6200ee;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  color: #fff;
+}
+
+.publish-button-hovered {
+  background: #3700b3;
+}
+
+.button-icon {
+  position: absolute;
+  z-index: 50001;
+  width: 46rpx;
+  height: 46rpx;
+  left: 27rpx;
+  top: 27rpx;
+}

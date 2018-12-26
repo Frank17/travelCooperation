@@ -1,2 +1,15 @@
 <!--pages/me/me.wxml-->
-<text>pages/me/me.wxml</text>
+
+<view class='container'>
+  <view class='user-info-row' hover-class='user-info-row-hover'>
+    <image src='../../resources/imgs/face.jpg' class='user-info-face' mode='widthFill' />
+    <view class='user-info-detail' >
+      <label class='user-info-nickname'>小猪乔冶</label>
+      <label class='user-info-edit'>单击以编辑用户</label>
+    </view>
+  </view>
+  <van-cell-group custom-class='activity-cells-container' class='cells-group-container-first cells-group-container'>
+    <van-cell title='我发布的活动' is-link='{{ true }}' />
+    <van-cell title='我参加的活动' is-link='{{ true }}' />
+  </van-cell-group>
+</view>

@@ -1,2 +1,17 @@
 <!--pages/publication/publication.wxml-->
-<text>pages/publication/publication.wxml</text>
+<view class='container'>
+  <van-cell-group class='cell-container' custom-class=''>
+    <van-field placeholder='请输入活动标题' border='{{ true }}' maxlength='32' input-class='title-input' />
+    <label class='van-block-title'>活动详情</label>
+    <van-field placeholder='输入活动详细情况' type='textarea' autosize='{{ true }}' border='{{ true }}' input-class='detail-input' />
+    <van-cell title='最大人数' is-link='{{ true }}' value='140' />
+    <van-cell title='开始时间' is-link='{{ true }}' icon='clock' />
+    <van-cell title='结束时间' is-link='{{ true }}' icon='clock' value='2018/12/29 15:00' />
+    <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='江苏省南京市' />
+    <view>
+      <image src='../../resources/imgs/timg.jpeg' class='activity-image' mode='aspectFill' />
+      <van-button type='default'><van-icon name='../../icons/add-1.png' /></van-button>
+    </view>
+  </van-cell-group>
+  <van-button type='primary' class='publish-button'>立即发布</van-button>
+</view>

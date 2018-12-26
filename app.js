@@ -37,3 +37,13 @@ App({
     userInfo: null
   }
 })
+
+// 
+// 
+// ,
+// {
+//   "pagePath": "pages/publication/publication",
+//   "text": "发布",
+//   "iconPath": "icons/add_8.png",
+//   "selectedIconPath": "selected_icons/add_8.png"
+// }

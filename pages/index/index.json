@@ -4,6 +4,8 @@
     "van-row": "../../miniprogram_npm/vant-weapp/row",
     "van-col": "../../miniprogram_npm/vant-weapp/col",
     "sort-bar": "../../components/sort-bar",
-    "activity-cell": "../../components/activity-cell"
+    "activity-cell": "../../components/activity-cell",
+    "van-button": "../../miniprogram_npm/vant-weapp/button",
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon"
   }
 }

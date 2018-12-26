@@ -39,6 +39,11 @@ Page({
   onActivityTap(e) {
     console.log(e)
   },
+  onPublishButtonTap() {
+    wx.navigateTo({
+      url: '../publication/publication',
+    })
+  },
   onLoad: function () {
     getData('https://traval.com/activities/')
       .then(res => {
