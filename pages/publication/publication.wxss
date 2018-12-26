@@ -29,11 +29,28 @@
   margin-bottom: 24rpx;
 }
 
+.add-button {
+  background: rgb(17, 17, 17);
+  border-radius: 0;
+  width: 200rpx;
+  height: 200rpx;
+  align-items: center;
+  justify-content: center;
+}
+
 .image-container {
   margin-top: 24rpx;
+  flex-direction: row;
+  display: flex;
+  display: -webkit-flex;
 }
 
 .activity-image {
   width: 200rpx;
   height: 200rpx;
+}
+
+.activity-button-image {
+  width: 80rpx;
+  height: 80rpx;
 }
