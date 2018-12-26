@@ -29,6 +29,10 @@
   margin-bottom: 24rpx;
 }
 
+.image-container {
+  margin-top: 24rpx;
+}
+
 .activity-image {
   width: 200rpx;
   height: 200rpx;
