@@ -1,0 +1,90 @@
+/* pages/detail/index.wxss */
+
+@import '../../app.wxss';
+
+.user-info-row {
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.user-info-userface {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.user-info-timestamp {
+  font-size: 24rpx;
+  color: #757575;
+  margin-bottom: 8rpx;
+}
+
+.activity-detial-contaienr {
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+}
+
+.activity-detial {
+  text-align: justify;
+  font-size: 32rpx;
+}
+
+.activity-flag-container {
+  width: 100%;
+  margin-left: 16rpx;
+  margin-right: 16rpx;
+}
+
+.activity-content {
+  margin-top: 12rpx;
+}
+
+.acitivity-flag {
+  color: #9E9E9E;
+  font-size: 24rpx;
+  margin-right: 16rpx;
+}
+
+.activity-members-container {
+  margin-top: 16rpx;
+}
+
+.activity-member {
+  width: 10%;
+  box-sizing: border-box;
+}
+
+.activity-images-container {
+  margin-top: 24rpx;
+}
+
+.activity-image {
+  width: calc(33.3333333333333333% - 24rpx);
+  width: -webkit-calc(33.3333333333333333% - 24rpx);
+  /* width: 33.3333333333333333%; */
+  margin-left: 16rpx;
+  height: 250rpx;
+}
+
+.acitivity-deadline {
+  font-style: italic;
+  align-self: flex-end;
+  margin-right: 24rpx;
+  margin-bottom: 24rpx;
+  margin-top: 16rpx;
+}
+
+.button-attend {
+  background: #6200ee;
+  border: none;
+  color: #fff;
+  border-radius: 0;
+  font-size: 24rpx;
+  position: absolute;
+  top: 16rpx;
+  right: 32rpx;
+}

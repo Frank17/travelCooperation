@@ -46,7 +46,7 @@ Component({
         if (null === members) {
           members = 0;
         }
-        if (50 < members) {
+        if (200 < members) {
           return 'danger'
         } else {
           return 'success'

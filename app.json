@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/publication/publication",
-    "pages/me/me"
+    "pages/me/me",
+    "pages/detail/index"
   ],
   "tabBar": {
     "color": "#6200ee",
@@ -16,7 +17,8 @@
         "text": "首页",
         "iconPath": "icons/home_1.png",
         "selectedIconPath": "selected_icons/home_1.png"
-      }, {
+      },
+      {
         "pagePath": "pages/me/me",
         "text": "个人中心",
         "iconPath": "icons/my.png",
@@ -36,4 +38,3 @@
     "backgroundColor": "#fafafa"
   }
 }
-

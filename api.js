@@ -27,7 +27,7 @@ const getData = function(url) {
         'data|10': [{
           'id|+1': 1,
           'bg': "@image('960x480', '#4A7BF7','#fff','pic')",
-          'status': '@integer(0, 4)',
+          'status': '@integer(0, 1)',
           'address': '@ctitle(3,8)',
           'title': '@ctitle(3,8)',
           'ownerId': '@title(3,16)',
@@ -35,6 +35,7 @@ const getData = function(url) {
           'start': '@datetime(yyyy/MM/dd)',//库存数量  
           'end': '@datetime(yyyy/MM/dd)',
           'members': '@integer(10, 1000)',
+          'imgs|5': ["@image('960x480', '#4A7BF7','#fff','pic')"]
         }]
       })
       resolve(res)

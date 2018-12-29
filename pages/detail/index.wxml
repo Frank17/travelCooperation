@@ -1,0 +1,42 @@
+<!--pages/detail/index.wxml-->
+<view class='container'>
+  <view>
+    <button wx:if='{{0 !== activity.status}}' class='button-attend'><van-icon name='../../icons/add_3_white' />立即参与</button>
+    <button wx:if='{{0 === activity.status}}' class='button-attend' disabled='{{true}}'>已结束</button>
+  </view>
+  <view class='user-info-row'>
+    <image src='../../resources/imgs/face.jpg' class='user-info-userface' mode='aspectFill' />
+    <label class='user-info-timestamp'>由小猪乔冶于2019/01/02 12:03发起</label>
+  </view>
+  <view class='activity-content'>
+    <view class='activity-flag-container'>
+      <label class='acitivity-flag'><van-icon name='location' />{{activity.address}}</label>
+      <label class='acitivity-flag'>{{activity.end}} 截止</label>
+    </view>
+    <view class='activity-detial-contaienr'>
+      <label class='activity-detial'>{{activity.detail}}</label>
+    </view>
+    <view class='activity-images-container'>
+      <image wx:for='{{activity.imgs}}' wx:for-index='index' wx:key='image-{{index}}' class='activity-image' src='../../resources/imgs/timg.jpeg' mode='aspectFill' />
+    </view>
+    <view class='activity-members-container'>
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+    </view>
+  </view>
+  <label class='acitivity-flag acitivity-deadline'>报名截止至：{{activity.end}} </label>
+</view>
