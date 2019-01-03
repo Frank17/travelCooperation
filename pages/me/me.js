@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onMeTapped() {
+    wx.navigateTo({
+      url: '../userinfo/userinfo',
+    })
   }
 })

@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/publication/publication",
     "pages/me/me",
-    "pages/detail/index"
+    "pages/detail/index",
+    "pages/userinfo/userinfo"
   ],
   "tabBar": {
     "color": "#6200ee",

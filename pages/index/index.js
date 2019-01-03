@@ -3,6 +3,7 @@
 import { BAR_ITEMS } from '../../resources/sortable-items.js'
 import { getData } from '../../api.js'
 import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
+// import * as _ from '../../miniprogram_npm/lodash/index.js'
 const app = getApp()
 
 Page({
