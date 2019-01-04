@@ -15,6 +15,8 @@ Page({
     searchfocused: false,
     barItems: BAR_ITEMS,
     activities: [],
+    byId: 1,
+    asc: true,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -36,8 +38,19 @@ Page({
     wx.showToast({
       title: `${e.detail.byTitle}, ${e.detail.byId}, ${e.detail.asc ? '升序' : '降序'}排列`,
     })
-    let { byTitle, byId, asc } = e.detail
-    let data = this.data.activities
+    this.setData({
+      byId: e.detail.byId,
+      asc: e.detail.asc
+    })
+    let data = this.sortData(e.detail)
+    this.setData({
+      activities: data
+    })
+    console.log(e.detail)
+  },
+  sortData(param, data) {
+    let { byTitle, byId, asc } = param
+    data = data || this.data.activities
     if (byId === 1) {
       data = _.orderBy(data, [item => {
         return item.status
@@ -57,10 +70,7 @@ Page({
         return item.address
       }], ['desc', asc ? 'asc' : 'desc'])
     }
-    this.setData({
-      activities: data
-    })
-    console.log(e.detail)
+    return data
   },
   onActivityTap(e) {
     console.log(e)
@@ -80,14 +90,13 @@ Page({
     getData('https://traval.com/activities/')
       .then(res => {
         let { data } = res
-        let groupedData = _.groupBy(data, item => {
-          return item.status
-        })
-        data = _.sortBy(data, [item => {
-          return -item.status
-        }, item => {
-          return item.start
-        }])
+        
+        // data = _.sortBy(data, [item => {
+        //   return -item.status
+        // }, item => {
+        //   return item.start
+        // }])
+        data = this.sortData({byId: this.data.byId, asc: this.data.asc}, data)
         this.setData({
           activities: data
         })
