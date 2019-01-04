@@ -1,18 +1,23 @@
-// pages/me/me.js
+// pages/mypublished/mypublished.js
+import { getMyPublishedActivities } from '../../api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    activities: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    getMyPublishedActivities().then(data => {
+      this.setData({
+        activities: data.data
+      })
+    })
   },
 
   /**
@@ -62,20 +67,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  onMeTap() {
-    wx.navigateTo({
-      url: '../userinfo/userinfo',
-    })
-  },
-  onMyPublishedTap() {
-    wx.navigateTo({
-      url: '../mypublished/mypublished',
-    })
-  },
-  onMyAttendTap() {
-    wx.navigateTo({
-      url: '../myattend/myattend',
-    })
   }
 })

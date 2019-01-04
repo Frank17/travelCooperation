@@ -1,0 +1,11 @@
+/* pages/userinfo/userinfo.wxss */
+
+@import '../../app.wxss';
+
+.container {
+  width: 100%;
+}
+
+.container van-cell-group {
+  width: 100%;
+}

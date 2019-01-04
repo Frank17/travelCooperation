@@ -1,0 +1,7 @@
+<!--pages/myattend/myattend.wxml-->
+<view class='container'>
+  <view class='acitity-container'>
+    <activity-cell wx:for='{{activities}}' wx:for-index='index' wx:for-item='activity' wx:key='{{activity.id}}' activity='{{activity}}' bind:cell-tap='onActivityTap' />
+  </view>
+</view>
+

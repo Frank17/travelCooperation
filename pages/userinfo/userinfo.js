@@ -1,4 +1,4 @@
-// pages/me/me.js
+// pages/userinfo/userinfo.js
 Page({
 
   /**
@@ -62,20 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  onMeTap() {
-    wx.navigateTo({
-      url: '../userinfo/userinfo',
-    })
-  },
-  onMyPublishedTap() {
-    wx.navigateTo({
-      url: '../mypublished/mypublished',
-    })
-  },
-  onMyAttendTap() {
-    wx.navigateTo({
-      url: '../myattend/myattend',
-    })
   }
 })

@@ -5,7 +5,9 @@
     "pages/publication/publication",
     "pages/me/me",
     "pages/detail/index",
-    "pages/userinfo/userinfo"
+    "pages/userinfo/userinfo",
+    "pages/mypublished/mypublished",
+    "pages/myattend/myattend"
   ],
   "tabBar": {
     "color": "#6200ee",

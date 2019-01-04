@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "activity-cell": "../../components/activity-cell"
+  },
+  "navigationBarTitleText": "我参与的活动"
+}

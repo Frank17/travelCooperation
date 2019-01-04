@@ -1,0 +1,3 @@
+/* pages/myattend/myattend.wxss */
+
+@import '../mypublished/mypublished.wxss';
