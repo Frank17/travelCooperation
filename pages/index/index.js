@@ -3,12 +3,11 @@
 import { BAR_ITEMS } from '../../resources/sortable-items.js'
 import { getData } from '../../api.js'
 import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
-// import * as _ from '../../miniprogram_npm/lodash/index.js'
+import _ from '../../miniprogram_npm/lodash/index.js'
 const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -37,6 +36,31 @@ Page({
     wx.showToast({
       title: `${e.detail.byTitle}, ${e.detail.byId}, ${e.detail.asc ? '升序' : '降序'}排列`,
     })
+    let { byTitle, byId, asc } = e.detail
+    let data = this.data.activities
+    if (byId === 1) {
+      data = _.orderBy(data, [item => {
+        return item.status
+      }, item => {
+        return item.start
+      }], ['desc', asc ? 'asc' : 'desc'])
+    } else if (byId === 2) {
+      data = _.orderBy(data, [item => {
+        return item.status
+      }, item => {
+        return item.members
+      }], ['desc', asc ? 'asc' : 'desc'])
+    } else if (byId === 3) {
+      data = _.orderBy(data, [item => {
+        return item.status
+      }, item => {
+        return item.address
+      }], ['desc', asc ? 'asc' : 'desc'])
+    }
+    this.setData({
+      activities: data
+    })
+    console.log(e.detail)
   },
   onActivityTap(e) {
     console.log(e)
@@ -55,8 +79,17 @@ Page({
   onLoad: function () {
     getData('https://traval.com/activities/')
       .then(res => {
+        let { data } = res
+        let groupedData = _.groupBy(data, item => {
+          return item.status
+        })
+        data = _.sortBy(data, [item => {
+          return -item.status
+        }, item => {
+          return item.start
+        }])
         this.setData({
-          activities: res.data
+          activities: data
         })
         console.log(res)
       })
