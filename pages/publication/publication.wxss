@@ -54,3 +54,11 @@
   width: 80rpx;
   height: 80rpx;
 }
+
+.picker-container {
+  width: 100%;
+}
+
+.popup-container {
+  width: 100%;
+}

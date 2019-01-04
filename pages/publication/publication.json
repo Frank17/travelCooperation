@@ -4,7 +4,11 @@
     "van-cell": "../../miniprogram_npm/vant-weapp/cell",
     "van-field": "../../miniprogram_npm/vant-weapp/field",
     "van-button": "../../miniprogram_npm/vant-weapp/button",
-    "van-icon": "../../miniprogram_npm/vant-weapp/icon"
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon",
+    "van-popup": "../../miniprogram_npm/vant-weapp/popup",
+    "van-picker": "../../miniprogram_npm/vant-weapp/picker",
+    "van-datetime-picker": "../../miniprogram_npm/vant-weapp/datetime-picker"
+
   },
   "navigationBarTitleText": "发布活动"
 }

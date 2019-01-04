@@ -4,14 +4,23 @@
     <van-field placeholder='请输入活动标题' border='{{ true }}' maxlength='32' input-class='title-input' />
     <label class='van-block-title'>活动详情</label>
     <van-field placeholder='输入活动详细情况' type='textarea' autosize='{{ true }}' border='{{ true }}' input-class='detail-input' />
-    <van-cell title='最大人数' is-link='{{ true }}' value='140' />
-    <van-cell title='开始时间' is-link='{{ true }}' icon='clock' />
-    <van-cell title='结束时间' is-link='{{ true }}' icon='clock' value='2018/12/29 15:00' />
-    <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='江苏省南京市' />
+    <van-cell title='最大人数' is-link='{{ true }}' value='{{ maxMember }}' bind:tap='showPicker' data-picker-type='maxMember' />
+    <van-cell title='开始时间' is-link='{{ true }}' icon='clock' bind:tap='showPicker' data-picker-type='startDatePicker' value='{{ startDate }}' />
+    <van-cell title='结束时间' is-link='{{ true }}' icon='clock' value='{{ endDate }}' tap='onStartDateTap' bind:tap='showPicker' data-picker-type='endDatePicker' />
+    <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='江苏省南京市' bind:tap='showPicker' data-picker-type='addressPicker' />
     <view class='image-container'>
       <image src='../../resources/imgs/timg.jpeg' class='activity-image' mode='aspectFill' />
       <view type='default' class='add-button'><image src='../../icons/add_3_512.png' class='activity-button-image' /></view>
     </view>
   </van-cell-group>
   <van-button type='primary' class='publish-button'>立即发布</van-button>
+  <van-popup show='{{ maxMemberPickerShown }}' position='bottom' overlay='{{ true }}' bind:close='onClosePicker' custom-class='popup-container' close-on-click-overlay='{{ true }}' z-index='{{ 100000 }}' data-for-picker='maxMember'>
+    <van-picker columns='{{ maxMemebersValues }}' custom-class='picker-container' show-toolbar='{{ true }}' bind:change='onMaxMemberChange' bind:confirm='onMaxMemberConfirm' bind:cancel='onMaxMemberCancel' />
+  </van-popup>
+  <van-popup show='{{ startDatePickerShown }}' position='bottom' overlay='{{ true }}' bind:close='onClosePicker' custom-class='popup-container' close-on-click-overlay='{{ true }}' z-index='{{ 100000 }}' data-for-picker='startDatePicker'>
+    <van-datetime-picker value='{{ startDateValue }}' custom-class='picker-container' show-toolbar='{{ true }}' bind:change='onStartDateChange' bind:confirm='onStartDateConfirm' bind:cancel='onClosePicker' data-for-picker='startDatePicker' />
+  </van-popup>
+  <van-popup show='{{ endDatePickerShown }}' position='bottom' overlay='{{ true }}' bind:close='onClosePicker' custom-class='popup-container' close-on-click-overlay='{{ true }}' z-index='{{ 100000 }}' data-for-picker='endDatePicker'>
+    <van-datetime-picker value='{{ endDateValue }}' custom-class='picker-container' show-toolbar='{{ true }}' bind:change='onStartDateChange' bind:confirm='onStartDateConfirm' bind:cancel='onClosePicker' data-for-picker='endDatePicker' />
+  </van-popup>
 </view>
