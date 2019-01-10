@@ -30,7 +30,7 @@ const post = (url, param) => {
       url: url,
       data: param,
       method: 'POST',
-      header: 'application/json;charset=utf-8',
+      header: 'application/json',
       success(res) {
         resolve(res)
       },
@@ -69,13 +69,15 @@ const login = () => {
     })
   })
   loginPromise.then(status => {
-    console.log('logined')
+    console.log('logined: ')
+    console.log(status)
   })
   .catch(status => {
     wx.login({
       success(res) {
-        console.log(res)
+        // console.log(res)
         let { code } = res
+        console.log('code：' + code)
         post(`${getServer()}/user/login/${code}`)
         .then(loginResult => {
 
