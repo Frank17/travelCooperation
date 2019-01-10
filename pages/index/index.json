@@ -7,5 +7,6 @@
     "activity-cell": "../../components/activity-cell",
     "van-button": "../../miniprogram_npm/vant-weapp/button",
     "van-icon": "../../miniprogram_npm/vant-weapp/icon"
-  }
+  },
+  "navigationBarTitleText": "活动"
 }
