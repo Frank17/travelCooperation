@@ -1,12 +1,12 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
   <view>
-    <button wx:if='{{0 !== activity.status}}' class='button-attend'><van-icon name='../../icons/add_3_white' />立即参与</button>
-    <button wx:if='{{0 === activity.status}}' class='button-attend' disabled='{{true}}'>已结束</button>
+    <button wx:if='{{0 !== activity.status || true === activity.status}}' class='button-attend'><van-icon name='../../icons/add_3_white' />立即参与</button>
+    <button wx:if='{{ 0 === activity.status || false === activity.status }}' class='button-attend' disabled='{{true}}'>已结束</button>
   </view>
   <view class='user-info-row'>
     <image src='../../resources/imgs/face.jpg' class='user-info-userface' mode='aspectFill' />
-    <label class='user-info-timestamp'>由小猪乔冶于2019/01/02 12:03发起</label>
+    <label class='user-info-timestamp'>由小猪乔冶于{{ activity.createDate }}发起</label>
   </view>
   <view class='activity-content'>
     <view class='activity-flag-container'>
@@ -20,22 +20,8 @@
       <image wx:for='{{activity.imgs}}' wx:for-index='index' wx:key='image-{{index}}' class='activity-image' src='../../resources/imgs/timg.jpeg' mode='aspectFill' />
     </view>
     <view class='activity-members-container'>
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
-      <image class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' />
+      <image wx:for='{{ activity.members }}' wx:for-index='member-index' wx:for-item='member' wx:key='{{ member.openid }}' class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' data-member-id='{{ member.openid }}' />
+      
     </view>
   </view>
   <label class='acitivity-flag acitivity-deadline'>报名截止至：{{activity.end}} </label>

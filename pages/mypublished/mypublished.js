@@ -1,5 +1,8 @@
 // pages/mypublished/mypublished.js
 import { getMyPublishedActivities } from '../../api.js'
+import { server, post, getRequest, getOpenId } from '../../utils/util.js'
+import _ from '../../miniprogram_npm/lodash/index.js'
+import moment from '../../miniprogram_npm/moment/index.js'
 Page({
 
   /**
@@ -13,11 +16,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    getMyPublishedActivities().then(data => {
-      this.setData({
-        activities: data.data
+    
+    getOpenId()
+    .then(openid => {
+      getRequest(`${server}/activities/detail/${openid}`)
+      .then(res => {
+        console.log(res)
+        if (200 === res.statusCode && res.data.status) {
+          let { data } = res
+          let activities = _.orderBy(data.param, ['status'], ['desc'])
+          _.each(activities, item => {
+            item.start = moment(item.start).format('YYYY/MM/DD HH:mm')
+            item.end = moment(item.end).format('YYYY/MM/DD HH:mm')
+            item.createDate = moment(item.createDate).format('YYYY/MM/DD HH:mm')
+          })
+          this.setData({
+            activities: activities
+          })
+        }
       })
+        .catch(err => {
+          console.log(err)
+        })
     })
+    .catch(console.log)
   },
 
   /**

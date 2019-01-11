@@ -2,7 +2,7 @@ let __DEBUG__ = true
 
 const getServer = () => {
   if (__DEBUG__) {
-    return 'http://'
+    return 'http://172.19.240.68:8000'
   } else {
     return 'http://'
   }
@@ -57,6 +57,21 @@ const getRequest = (url, param) => {
   })
 }
 
+const saveStorage = (key, value) => {
+  return new Promise((resolve, reject) => {
+      wx.setStorage({
+      key: key,
+      data: value,
+      success(res) {
+        resolve(res)
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  })
+}
+
 const login = () => {
   let loginPromise = new Promise((resolve, reject) => {
     wx.checkSession({
@@ -73,6 +88,7 @@ const login = () => {
     console.log(status)
   })
   .catch(status => {
+    
     wx.login({
       success(res) {
         // console.log(res)
@@ -80,10 +96,14 @@ const login = () => {
         console.log('code：' + code)
         post(`${getServer()}/user/login/${code}`)
         .then(loginResult => {
-
+          console.log(loginResult)
+          // saveStorage('loginKey', )
+          if (200 === loginResult.statusCode && loginResult.data.status) {
+            saveStorage('loginKey', loginResult.data.param)
+          }
         })
         .catch(err => {
-
+          console.log(err)
         })
       },
       fail(err) {
@@ -93,9 +113,41 @@ const login = () => {
   })
 }
 
+const getOpenId = () => {
+  return new Promise((resolve, reject) => {
+    wx.getStorage({
+      key: 'loginKey',
+      success: function(res) {
+        resolve(res.data.openid)
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  })
+}
+
+const getSessionKey = () => {
+  return new Promise((resolve, reject) => {
+    wx.getStorage({
+      key: 'loginKey',
+      success: function (res) {
+        resovle(res.session_key)
+      },
+      fail(err) {
+        reject(err)
+      }
+    })
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
   login: login,
   post: post,
-  getRequest: getRequest
+  getRequest: getRequest,
+  getOpenId: getOpenId,
+  getSession: getSessionKey,
+  saveStorage: saveStorage,
+  server: getServer()
 }

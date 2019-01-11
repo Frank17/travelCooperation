@@ -39,7 +39,7 @@ Component({
       let type = this.data.activity.status
       if (null === type) {
         return 'default'
-      } else if (type === 0) {
+      } else if (type === 0 || false === type) {
         return 'default'
       } else {
         let members = this.data.activity.members
@@ -57,7 +57,7 @@ Component({
       let type = this.data.activity.status
       if (null === type) {
         return '已结束'
-      } else if (type === 0) {
+      } else if (type === 0 || false === type) {
         return '已结束'
       } else {
         let members = this.data.activity.members

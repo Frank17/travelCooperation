@@ -1,42 +1,37 @@
-// pages/detail/index.js
-import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
-import { getRequest, server } from '../../utils/util.js'
+// pages/auth/auth.js
+
+import { saveStorage } from '../../utils/util.js'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    activity: null,
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let detail = JSON.parse(Base64.decode(options.detail))
-    // console.log(JSON.parse(detail))
-    this.setData({
-      activity: detail,
-    })
-    wx.setNavigationBarTitle({
-      title: detail.title
-    })
-    getRequest(`${server}/activities/${this.data.activity.id}`)
-    .then(res => {
-      console.log(res.data)
-      let { data } = res
-      if (data.status) {
-        let members = data.param.members
-        let activity = this.data.activity
-        activity.members = members
-        this.setData({
-          activity: activity
-        })
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+          wx.getUserInfo({
+            success: res => {
+              // 可以将 res 发送给后台解码出 unionId
+              console.log(res)
+            }
+          })
+          wx.redirectTo({
+            url: '../index/index'
+          })
+        } else {
+          
+        }
       }
-    })
-    .catch(err => {
-      console.log(err)
     })
   },
 
@@ -87,5 +82,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
 })

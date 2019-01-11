@@ -55,6 +55,7 @@
 
 .activity-cell-detail-container {
   max-height: 240rpx;
+  min-height: 240rpx;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;

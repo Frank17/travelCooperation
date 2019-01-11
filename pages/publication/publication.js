@@ -1,5 +1,6 @@
 // pages/publication/publication.js
 import moment from '../../miniprogram_npm/moment/index.js'
+import _ from '../../miniprogram_npm/lodash/index.js'
 Page({
 
   /**
@@ -15,6 +16,7 @@ Page({
     startDateValue: moment().millisecond(),
     endDate: moment().add(12, 'h').format('YYYY/MM/DD HH:mm'),
     endDateValue: moment().add(12, 'h').millisecond(),
+    images: []
   },
 
   /**
@@ -145,4 +147,17 @@ Page({
   nowDate() {
     return new Date().getTime()
   },
+  onChooseImageTap(e) {
+    wx.chooseImage({
+      success: res => {
+        let { images } = this.data
+        images = _.concat(images, res.tempFiles)
+        // images.push(res.tempFiles)
+        this.setData({
+          images: images
+        })
+        console.log(res)
+      },
+    })
+  }
 })

@@ -41,6 +41,7 @@
 
 .activity-content {
   margin-top: 12rpx;
+  width: 100%;
 }
 
 .acitivity-flag {

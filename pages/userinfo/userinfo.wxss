@@ -9,3 +9,8 @@
 .container van-cell-group {
   width: 100%;
 }
+
+.info-icon {
+  width: 96rpx;
+  height: 96rpx;
+}

@@ -1,9 +1,11 @@
 <!--pages/userinfo/userinfo.wxml-->
 <view class='container'>
   <van-cell-group>
-    <van-cell title='头像' />
-    <van-cell title='用户ID' value='zouzhipeng1717' />
-    <van-cell title='昵称' is-link='{{true}}' value='小猪乔冶'/>
-    <van-cell title='性别' is-link='{{true}}' value='男' />
+    <van-cell title='头像' >
+      <image slot='right-icon' src='{{ avatarUrl }}' class='info-icon'></image>
+    </van-cell>
+    <!-- <van-cell title='用户ID' value='zouzhipeng1717' /> -->
+    <van-cell title='昵称' is-link='{{true}}' value='{{ nickname }}'/>
+    <van-cell title='性别' is-link='{{true}}' value='{{ gender }}' />
   </van-cell-group>
 </view>

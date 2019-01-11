@@ -1,0 +1,4 @@
+<!--pages/auth/auth.wxml-->
+<view>
+  <button open-type='getUserInfo' bindgetuserinfo='onUserInfoGot'>确认授权</button>
+</view>

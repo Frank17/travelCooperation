@@ -7,4 +7,9 @@
     <activity-cell wx:for='{{activities}}' wx:for-index='index' wx:for-item='activity' wx:key='{{activity.id}}' activity='{{activity}}' bind:cell-tap='onActivityTap' />
   </view>
   <button class='publish-button' hover-class='publish-button-hovered'><image class='button-icon' src='../../icons/add_3_white.png' bind:tap='onPublishButtonTap' /></button>
+  <van-popup position='left' z-index='1000000' show='{{ showAuth }}' custom-style='width: 100%; height: 100%;'>
+    <view style='width: 100%; height: 100%;'>
+      <button open-type='getUserInfo' bindgetuserinfo='getUserInfo'>立即授权</button>
+    </view>
+  </van-popup>
 </view>

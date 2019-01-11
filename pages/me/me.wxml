@@ -4,7 +4,7 @@
   <view class='user-info-row' hover-class='user-info-row-hover'>
     <image src='../../resources/imgs/face.jpg' class='user-info-face' mode='widthFill' />
     <view class='user-info-detail' bind:tap='onMeTap'>
-      <label class='user-info-nickname'>小猪乔冶</label>
+      <label class='user-info-nickname'>{{ nickname }}</label>
       <label class='user-info-edit'>单击以编辑用户</label>
     </view>
   </view>

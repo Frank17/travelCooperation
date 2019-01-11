@@ -2,8 +2,10 @@
 //获取应用实例
 import { BAR_ITEMS } from '../../resources/sortable-items.js'
 import { getData } from '../../api.js'
+import { getRequest, server } from '../../utils/util.js'
 import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
 import _ from '../../miniprogram_npm/lodash/index.js'
+import moment from '../../miniprogram_npm/moment/index.js'
 const app = getApp()
 
 Page({
@@ -17,6 +19,9 @@ Page({
     activities: [],
     byId: 1,
     asc: true,
+    showAuth: false,
+    currentPage: 1,
+    pageSize: 10,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -87,24 +92,49 @@ Page({
     })
   },
   onLoad: function () {
-    getData('https://traval.com/activities/')
-      .then(res => {
-        let { data } = res
-        
-        // data = _.sortBy(data, [item => {
-        //   return -item.status
-        // }, item => {
-        //   return item.start
-        // }])
-        data = this.sortData({byId: this.data.byId, asc: this.data.asc}, data)
+    wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          
+        } else {
+          this.setData({
+            showAuth: true,
+          })
+        }
+      }
+    })
+    getRequest(`${server}/activities/${this.data.currentPage}/${this.data.pageSize}`, null)
+    .then(res => {
+      let { data } = res
+      if (data.status) {
+        data = this.sortData({ byId: this.data.byId, asc: this.data.asc }, data.param)
+        _.each(data, item => {
+          // console.log(item)
+          let { start, end } = item
+          let starttime = moment(start)
+          let endtime = moment(end)
+          let hours = moment(starttime - moment()).format('H')
+          if (24 > hours && 0 < hours) {
+            item.start = starttime.format('HH:mm')
+          }
+          hours = moment(endtime - moment()).format('H')
+          if (24 > hours && 0 < hours) {
+            item.end = endtime.format('HH:mm')
+          }
+          item.createDate = moment(item.createDate).format('YYYY/MM/DD HH:mm')
+          // console.log(Number.parseInt(hours))
+        })
         this.setData({
           activities: data
         })
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      }
+      
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+    
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -137,7 +167,9 @@ Page({
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      hasUserInfo: true,
+      showAuth: false
     })
+
   }
 })

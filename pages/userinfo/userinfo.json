@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "van-cell-group": "../../miniprogram_npm/vant-weapp/cell-group",
-    "van-cell": "../../miniprogram_npm/vant-weapp/cell"
+    "van-cell": "../../miniprogram_npm/vant-weapp/cell",
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon"
   },
   "navigationBarTitleText": "个人信息"
 }

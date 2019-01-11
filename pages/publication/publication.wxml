@@ -8,8 +8,8 @@
     <van-cell title='开始时间' is-link='{{ true }}' icon='clock' bind:tap='showPicker' data-picker-type='startDatePicker' value='{{ startDate }}' />
     <van-cell title='结束时间' is-link='{{ true }}' icon='clock' value='{{ endDate }}' tap='onStartDateTap' bind:tap='showPicker' data-picker-type='endDatePicker' />
     <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='江苏省南京市' bind:tap='showPicker' data-picker-type='addressPicker' />
-    <view class='image-container'>
-      <image src='../../resources/imgs/timg.jpeg' class='activity-image' mode='aspectFill' />
+    <view class='image-container' bind:tap='onChooseImageTap'>
+      <image wx:for='{{ images }}' wx:for-index='img-index' wx:for-item='img' wx:key='{{ img-index }}' src='{{ img.path }}' class='activity-image' mode='aspectFill' />
       <view type='default' class='add-button'><image src='../../icons/add_3_512.png' class='activity-button-image' /></view>
     </view>
   </van-cell-group>

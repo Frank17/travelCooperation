@@ -1,18 +1,25 @@
 // pages/userinfo/userinfo.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    nickname: app.globalData ? app.globalData.userInfo ? app.globalData.userInfo.nickName : null : null,
+    gender: null,
+    avatarUrl: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      nickname: app.globalData.userInfo.nickName,
+      gender: 1 === app.globalData.userInfo.gender ? '女' : '男',
+      avatarUrl: app.globalData.userInfo.avatarUrl
+    })
   },
 
   /**

@@ -6,7 +6,8 @@
     "sort-bar": "../../components/sort-bar",
     "activity-cell": "../../components/activity-cell",
     "van-button": "../../miniprogram_npm/vant-weapp/button",
-    "van-icon": "../../miniprogram_npm/vant-weapp/icon"
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon",
+    "van-popup": "../../miniprogram_npm/vant-weapp/popup"
   },
   "navigationBarTitleText": "活动"
 }
