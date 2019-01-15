@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "van-icon": "../../miniprogram_npm/vant-weapp/icon"
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon",
+    "van-popup": "../../miniprogram_npm/vant-weapp/popup",
+    "van-loading": "../../miniprogram_npm/vant-weapp/loading"
   }
 }

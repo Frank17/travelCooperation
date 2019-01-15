@@ -1,7 +1,7 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
   <view>
-    <button wx:if='{{0 !== activity.status || true === activity.status}}' class='button-attend'><van-icon name='../../icons/add_3_white' />立即参与</button>
+    <button wx:if='{{0 !== activity.status && true === activity.status}}' class='button-attend' bindtap='onAttendTap' data-activity-id='{{ activity.id }}'><van-icon name='../../icons/add_3_white' />立即参与</button>
     <button wx:if='{{ 0 === activity.status || false === activity.status }}' class='button-attend' disabled='{{true}}'>已结束</button>
   </view>
   <view class='user-info-row'>
@@ -25,4 +25,10 @@
     </view>
   </view>
   <label class='acitivity-flag acitivity-deadline'>报名截止至：{{activity.end}} </label>
+  <van-popup close-on-click-overlay='{{ false }}' overlay='{{ true }}' show='{{ showLoading }}' custom-style='background-color: transparent;'>
+    <view style='background-color: transparent; display: flex; flex-direction: column;align-items: center;'>
+      <van-loading size='84rpx' color='#fff' custom-class='loading-container' />
+      <text class='loading-title'>正在报名...</text>
+    </view>
+  </van-popup>
 </view>

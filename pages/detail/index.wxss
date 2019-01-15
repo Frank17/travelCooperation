@@ -89,3 +89,13 @@
   top: 16rpx;
   right: 32rpx;
 }
+
+.loading-container {
+  background-color: transparent;
+}
+
+.loading-title {
+  color: #fff;
+  font-size: 32rpx;
+  margin-top: 12rpx;
+}

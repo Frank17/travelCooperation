@@ -1,6 +1,6 @@
 // pages/detail/index.js
 import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
-import { getRequest, server } from '../../utils/util.js'
+import { getRequest, server, post, getOpenId } from '../../utils/util.js'
 Page({
 
   /**
@@ -8,6 +8,7 @@ Page({
    */
   data: {
     activity: null,
+    showLoading: false,
   },
 
   /**
@@ -87,5 +88,33 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onAttendTap(e) {
+    console.log(e)
+    getOpenId()
+    .then(openid => {
+      this.setData({
+        showLoading: true,
+      })
+      post(`${server}/activities/${openid}/${e.currentTarget.dataset.activityId}/attend/`)
+      .then(res => {
+        console.log(res)
+        this.setData({
+          showLoading: false,
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        this.setData({
+          showLoading: false,
+        })
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      this.setData({
+        showLoading: false,
+      })
+    })
   }
 })

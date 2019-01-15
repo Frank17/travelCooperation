@@ -2,6 +2,8 @@
 
 @import '../../app.wxss';
 
+@import '../../resources/iconfont.wxss';
+
 .container {
 }
 
@@ -30,12 +32,16 @@
 }
 
 .add-button {
-  background: rgb(17, 17, 17);
+  background: #E0E0E0;
   border-radius: 0;
-  width: 200rpx;
-  height: 200rpx;
+  border: none;
+  width: 250rpx;
+  height: 250rpx;
   align-items: center;
   justify-content: center;
+}
+.add-button::after {
+  border: none;
 }
 
 .image-container {
@@ -43,11 +49,12 @@
   flex-direction: row;
   display: flex;
   display: -webkit-flex;
+  flex-wrap: wrap;
 }
 
 .activity-image {
-  width: 200rpx;
-  height: 200rpx;
+  width: 250rpx;
+  height: 250rpx;
 }
 
 .activity-button-image {
@@ -61,4 +68,10 @@
 
 .popup-container {
   width: 100%;
+}
+
+.add-icon {
+  line-height: 250rpx;
+  display: flex;
+  font-size: 96rpx;
 }
