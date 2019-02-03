@@ -1,6 +1,7 @@
 // pages/publication/publication.js
 import moment from '../../miniprogram_npm/moment/index.js'
 import _ from '../../miniprogram_npm/lodash/index.js'
+import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog.js'
 Page({
 
   /**
@@ -16,7 +17,13 @@ Page({
     startDateValue: moment().millisecond(),
     endDate: moment().add(12, 'h').format('YYYY/MM/DD HH:mm'),
     endDateValue: moment().add(12, 'h').millisecond(),
-    images: []
+    images: [],
+    imagesEncoded: [],
+    activityValue: {
+      title: null,
+      detail: null,
+      location: null
+    }
   },
 
   /**
@@ -118,6 +125,34 @@ Page({
 
     }
   },
+  onDatePickerConfirm(e) {
+    let { currentTarget } = e
+    let pickerType = currentTarget.dataset.forPicker
+    if (pickerType === 'maxMember') {
+      this.setData({
+        maxMember: e.detail.value,
+        maxMemberPickerShown: false,
+      })
+    } else if (pickerType === 'startDatePicker') {
+      // this.setData({})
+      this.setData({
+        startDateValue: e.detail,
+        startDatePickerShown: false,
+        startDate: moment(e.detail).format('YYYY/MM/DD HH:mm')
+      })
+    } else if (pickerType === 'endDatePicker') {
+      this.setData({
+        endDateValue: e.detail,
+        endDate: moment(e.detail).format('YYYY/MM/DD HH:mm'),
+        endDatePickerShown: false,
+      })
+    } else if (pickerType === 'addressPicker') {
+
+    }
+  },
+  onDatePickerChange(e) {
+
+  },
   onCloseMaxMemberPicker() {
     this.setData({
       maxMemberPickerShown: false,
@@ -150,14 +185,54 @@ Page({
   onChooseImageTap(e) {
     wx.chooseImage({
       success: res => {
-        let { images } = this.data
-        images = _.concat(images, res.tempFiles)
-        // images.push(res.tempFiles)
-        this.setData({
-          images: images
+        wx.getFileSystemManager().readFile({
+          filePath: res.tempFilePaths[0], //选择图片返回的相对路径
+          encoding: 'base64', //编码格式
+          success: base64Str => { //成功的回调
+            let { images, imagesEncoded } = this.data
+            images = _.concat(images, res.tempFiles)
+            // images.push(res.tempFiles)
+            this.setData({
+              images: images
+            })
+            imagesEncoded.push(base64Str)
+            this.setData({
+              imagesEncoded: imagesEncoded
+            })
+            console.log(imagesEncoded)
+          }
         })
-        console.log(res)
       },
     })
-  }
+  },
+  onPublished(e) {
+    let { activityValue, maxMember, startDateValue, endDateValue, } = this.data
+    activityValue.maxMember = maxMember
+    activityValue.start = startDateValue
+    activityValue.end = endDateValue
+    console.log(activityValue)
+    if (null === this.data.activityValue.title || 0 < this.data.activityValue.title.trim().length) {
+      Dialog.alert({
+        title: '信息不完整',
+        message: '请输入完整的标题信息，否则无法创建活动'
+      })
+    }
+  },
+  onTitleChanged(val) {
+    this.setData({
+      activityValue: {
+        ...this.data.activityValue,
+        title: val.detail,
+      }
+    })
+  },
+  onDetailChanged(e) {
+    this.setData({
+      activityValue: {
+        ...this.data.activityValue,
+        detail: e.detail
+      }
+    })
+  },
+
 })

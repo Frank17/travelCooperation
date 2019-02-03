@@ -37,7 +37,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#6200ee",
     "navigationBarTitleText": "大学生协同出游",
-    "navigationBarTextStyle": "light",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#fafafa"
   }
 }

@@ -2,7 +2,7 @@ let __DEBUG__ = true
 
 const getServer = () => {
   if (__DEBUG__) {
-    return 'http://172.19.240.68:8000'
+    return 'http://139.224.117.148:8000'
   } else {
     return 'http://'
   }

@@ -89,5 +89,9 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onActivityTap(e) {
+    let data = e.detail
+    console.log(data)
   }
 })
