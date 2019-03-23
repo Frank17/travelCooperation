@@ -1,12 +1,13 @@
 <!--pages/detail/index.wxml-->
 <view class='container'>
   <view>
-    <button wx:if='{{0 !== activity.status && true === activity.status}}' class='button-attend' bindtap='onAttendTap' data-activity-id='{{ activity.id }}'><van-icon name='../../icons/add_3_white' />立即参与</button>
+    <button wx:if='{{!isOwner && 0 !== activity.status && activity.status && false === attended}}' class='button-attend' bindtap='onAttendTap' data-activity-id='{{ activity.id }}'><van-icon name='../../icons/add_3_white' />立即参与</button>
+    <button wx:if='{{!isOwner && 0 !== activity.status && activity.status && true === attended}}' class='button-attend button-cancel' bindtap='onCancelAttendTap' data-activity-id='{{ activity.id }}'><van-icon name='../../icons/add_3_white' />取消参与</button>
     <button wx:if='{{ 0 === activity.status || false === activity.status }}' class='button-attend' disabled='{{true}}'>已结束</button>
   </view>
   <view class='user-info-row'>
-    <image src='../../resources/imgs/face.jpg' class='user-info-userface' mode='aspectFill' />
-    <label class='user-info-timestamp'>由小猪乔冶于{{ activity.createDate }}发起</label>
+    <image src='{{activity.owner.face}}' class='user-info-userface' mode='aspectFill' />
+    <label class='user-info-timestamp'>由{{activity.owner.nickname}}于{{ activity.createDataFormatted }}发起</label>
   </view>
   <view class='activity-content'>
     <view class='activity-flag-container'>
@@ -20,7 +21,7 @@
       <image wx:for='{{activity.imgs}}' wx:for-index='index' wx:key='image-{{index}}' class='activity-image' src='../../resources/imgs/timg.jpeg' mode='aspectFill' />
     </view>
     <view class='activity-members-container'>
-      <image wx:for='{{ activity.members }}' wx:for-index='member-index' wx:for-item='member' wx:key='{{ member.openid }}' class='activity-member' src='../../resources/imgs/face.jpg' mode='widthFix' data-member-id='{{ member.openid }}' />
+      <image wx:for='{{ activity.members }}' wx:for-index='member-index' wx:for-item='member' wx:key='{{ member.openid }}' class='activity-member' src='{{member.face}}' mode='widthFix' data-member-id='{{ member.openid }}' />
       
     </view>
   </view>
@@ -28,7 +29,7 @@
   <van-popup close-on-click-overlay='{{ false }}' overlay='{{ true }}' show='{{ showLoading }}' custom-style='background-color: transparent;'>
     <view style='background-color: transparent; display: flex; flex-direction: column;align-items: center;'>
       <van-loading size='84rpx' color='#fff' custom-class='loading-container' />
-      <text class='loading-title'>正在报名...</text>
+      <text class='loading-title'>{{ loadingText }}</text>
     </view>
   </van-popup>
 </view>

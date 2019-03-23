@@ -91,7 +91,9 @@ Page({
 
   },
   onActivityTap(e) {
-    let data = e.detail
-    console.log(data)
+    console.log(e)
+    wx.navigateTo({
+      url: `../checkin/checkin?id=${e.detail.id}`,
+    })
   }
 })

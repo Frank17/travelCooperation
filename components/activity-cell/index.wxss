@@ -97,3 +97,12 @@
   position: absolute;
   z-index: 100000;
 }
+
+.label-created-date {
+  font-size: 20rpx;
+  color: #eee;
+  position: absolute;
+  z-index: 5000;
+  right: 24rpx;
+  top: 15rpx;
+}

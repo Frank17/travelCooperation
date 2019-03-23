@@ -5,6 +5,7 @@
     <view class='activity-cell-title-cotainer'>
       <van-tag type='{{tagType}}' class='activity-status-tag'>{{tagTitle}}</van-tag>
       <label class='label-block activity-cell-title'>{{activity.title}}</label>
+      <label class='label-block label-created-date'>{{activity.createDataFormatted}}</label>
     </view>
     <view class='activity-cell-detail-container'>
       <label class='label-block activity-cell-detail'>{{activity.detail}}</label>

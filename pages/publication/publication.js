@@ -2,6 +2,7 @@
 import moment from '../../miniprogram_npm/moment/index.js'
 import _ from '../../miniprogram_npm/lodash/index.js'
 import Dialog from '../../miniprogram_npm/vant-weapp/dialog/dialog.js'
+import { post, server, getOpenId } from '../../utils/util.js'
 Page({
 
   /**
@@ -23,7 +24,8 @@ Page({
       title: null,
       detail: null,
       location: null
-    }
+    },
+    isLoadingShow: false,
   },
 
   /**
@@ -103,7 +105,19 @@ Page({
         endDatePickerShown: true,
       })
     } else if (pickerType === 'addressPicker') {
-
+      wx.chooseLocation({
+        success: addr => {
+          this.setData({
+            activityValue: {
+              ...this.data.activityValue,
+              location: addr.address
+            }
+          })
+        },
+        fail: err => {
+          console.log(err)
+        }
+      })
     }
   },
   onClosePicker(event) {
@@ -206,17 +220,67 @@ Page({
     })
   },
   onPublished(e) {
-    let { activityValue, maxMember, startDateValue, endDateValue, } = this.data
-    activityValue.maxMember = maxMember
-    activityValue.start = startDateValue
-    activityValue.end = endDateValue
+    let { activityValue, maxMember, startDateValue, endDateValue, startDate, endDate } = this.data
+    activityValue.maxMembers = maxMember
+    activityValue.start = moment(startDate).format('YYYY-MM-DD HH:mm:ss')
+    activityValue.end = moment(endDate).format('YYYY-MM-DD HH:mm:ss') 
+    activityValue.address = activityValue.location ? activityValue.location : ""
+    activityValue.imgs = []
     console.log(activityValue)
-    if (null === this.data.activityValue.title || 0 < this.data.activityValue.title.trim().length) {
+    if (null === this.data.activityValue.title || 0 >= this.data.activityValue.title.trim().length) {
       Dialog.alert({
         title: '信息不完整',
-        message: '请输入完整的标题信息，否则无法创建活动'
+        message: '请输入完整的标题信息，否则无法创建活动',
+        selector: '#van-dlg-info-incomplete'
       })
+      return;
     }
+
+    this.setData({
+      isLoadingShow: true
+    })
+    getOpenId()
+    .then(openid => {
+      post(`${server}/activities/add/${openid}/`, activityValue)
+      .then(addRes => {
+        this.setData({
+          isLoadingShow: false
+        })
+        wx.navigateBack({
+          success: (e) => {
+            console.log(e)
+            let pages = getCurrentPages()
+            let currentPage = pages[pages.length -1]
+            if (currentPage && currentPage.onRefresh) {
+              currentPage.onRefresh()
+            }
+          }
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        wx.showToast({
+          title: 'err 1',
+        })
+        this.setData({
+          isLoadingShow: false
+        })
+      })
+    })
+    .catch(err => {
+      this.setData({
+        isLoadingShow: false
+      })
+      console.log(err)
+      wx.showToast({
+        title: 'err 2',
+      })
+    })
+  },
+  loadingComplete(e) {
+    wx.navigateBack({
+      
+    })
   },
   onTitleChanged(val) {
     this.setData({

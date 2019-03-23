@@ -1,0 +1,13 @@
+<!--pages/checkin/checkin.wxml-->
+<view class='container'>
+  <text class='user-list-title' wx:if='{{0 < members.length}}'>请为以下参加人员进行签到</text>
+
+  <vant-cell-group wx:if='{{0 < members.length}}' >
+    <van-cell wx:for='{{members}}' wx:for-item='member' title="{{member.nickname + ' '}}" clickable='{{!member.attend}}' wx:key='member.openid' bind:click='checkClicked' data-member='{{member.openid}}' data-checkedin='{{member.attend}}'>
+      <van-icon wx:if='{{member.attend}}' name='success' slot='right-icon' size='32rpx' color='#1976D2' />
+      <van-icon slot='icon' name='{{member.face}}' size='64rpx' />
+    </van-cell>
+  </vant-cell-group>
+  <text wx:else class='none-list'>暂时无参加人员需进行签到</text>
+  <van-dialog id='dlg-checkin' />
+</view>

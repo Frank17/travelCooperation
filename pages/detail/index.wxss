@@ -90,6 +90,10 @@
   right: 32rpx;
 }
 
+.button-cancel {
+  background: #ef0078;
+}
+
 .loading-container {
   background-color: transparent;
 }

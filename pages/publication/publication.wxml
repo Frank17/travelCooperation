@@ -7,7 +7,7 @@
     <van-cell title='最大人数' is-link='{{ true }}' value='{{ maxMember }}' bind:tap='showPicker' data-picker-type='maxMember' />
     <van-cell title='开始时间' is-link='{{ true }}' icon='clock' bind:tap='showPicker' data-picker-type='startDatePicker' value='{{ startDate }}' />
     <van-cell title='结束时间' is-link='{{ true }}' icon='clock' value='{{ endDate }}' tap='onStartDateTap' bind:tap='showPicker' data-picker-type='endDatePicker' />
-    <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='{{ activityValue.location }}' bind:tap='showPicker' data-picker-type='addressPicker' />
+    <van-cell title='活动地点' is-link='{{ true }}' icon='location' value='{{ activityValue.location }}' bind:click='showPicker' data-picker-type='addressPicker' />
     <view class='image-container' bind:tap='onChooseImageTap'>
       <image wx:for='{{ images }}' wx:for-index='img-index' wx:for-item='img' wx:key='{{ img-index }}' src='{{ img.path }}' class='activity-image' mode='aspectFill' />
       <view type='default' class='add-button'><!--<image src='../../icons/add_3_512.png' class='activity-button-image' />--><text class='add-icon tr-icon tr-add-1'></text></view>
@@ -24,4 +24,7 @@
     <van-datetime-picker value='{{ endDateValue }}' custom-class='picker-container' show-toolbar='{{ true }}' bind:change='onDatePickerChange' bind:confirm='onDatePickerConfirm' bind:cancel='onClosePicker' data-for-picker='endDatePicker' />
   </van-popup>
   <van-dialog id='van-dlg-info-incomplete'/>
+  <van-popup show="{{ isLoadingShow }}" bind:close="onClose" overlay='{{true}}' custom-style='background-color: transparent;'>
+    <van-loading color='#fff' custom-class='loading-container' close-on-click-overlay='{{false}}' bind:close='loadingComplete' />
+  </van-popup>
 </view>

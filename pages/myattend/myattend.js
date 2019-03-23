@@ -3,6 +3,7 @@ import { getMyPublishedActivities } from '../../api.js'
 import { server, post, getRequest, getOpenId } from '../../utils/util.js'
 import _ from '../../miniprogram_npm/lodash/index.js'
 import moment from '../../miniprogram_npm/moment/index.js'
+import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
 Page({
 
   /**
@@ -18,7 +19,7 @@ Page({
   onLoad: function (options) {
     getOpenId()
       .then(openid => {
-        getRequest(`${server}/activities/detail/${openid}`)
+        getRequest(`${server}/activities/attended/${openid}`)
           .then(res => {
             console.log(res)
             if (200 === res.statusCode && res.data.status) {
@@ -88,5 +89,13 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onActivityTap(e) {
+    let { detail } = e
+    let detailEncoded = Base64.encode(JSON.stringify(detail))
+    console.log(detailEncoded)
+    wx.navigateTo({
+      url: `../detail/index?detail=${detailEncoded}`,
+    })
   }
 })

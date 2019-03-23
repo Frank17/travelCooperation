@@ -2,10 +2,11 @@
 //获取应用实例
 import { BAR_ITEMS } from '../../resources/sortable-items.js'
 import { getData } from '../../api.js'
-import { getRequest, server } from '../../utils/util.js'
+import { getRequest, server, post, getOpenId } from '../../utils/util.js'
 import { Base64 } from '../../miniprogram_npm/js-base64/index.js'
 import _ from '../../miniprogram_npm/lodash/index.js'
 import moment from '../../miniprogram_npm/moment/index.js'
+import moment_localed from '../../miniprogram_npm/moment/zh-cn.js'
 const app = getApp()
 
 Page({
@@ -21,7 +22,7 @@ Page({
     asc: true,
     showAuth: false,
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 50,
   },
   //事件处理函数
   bindViewTap: function() {
@@ -60,7 +61,7 @@ Page({
       data = _.orderBy(data, [item => {
         return item.status
       }, item => {
-        return item.start
+        return item.createDate
       }], ['desc', asc ? 'asc' : 'desc'])
     } else if (byId === 2) {
       data = _.orderBy(data, [item => {
@@ -91,6 +92,53 @@ Page({
       url: '../publication/publication',
     })
   },
+  onRefresh() {
+    getRequest(`${server}/activities/${this.data.currentPage}/${this.data.pageSize}`, null)
+      .then(res => {
+        let { data } = res
+        if (data.status) {
+          data = this.sortData({ byId: this.data.byId, asc: this.data.asc }, data.param)
+          _.each(data, item => {
+            // console.log(item)
+            let { start, end } = item
+            let starttime = moment(start)
+            let endtime = moment(end)
+            let days = starttime.diff(moment(), 'days')
+            if (1 > days && 0 <= days) {
+              item.start = starttime.format('HH:mm')
+            } else {
+              item.start = starttime.format('YYYY/MM/DD HH:mm')
+            }
+            days = moment(endtime - moment()).format('H')
+            if (1 > days && 0 < days) {
+              item.end = endtime.format('HH:mm')
+            } else {
+              item.end = endtime.format('YYYY/MM/DD HH:mm')
+            }
+            let createdtime = moment(item.createDate)
+            let day_diff = createdtime.diff(moment(), 'days')
+            if (0 > day_diff) {
+              day_diff = -day_diff
+            }
+            if (day_diff > 3) {
+              item.createDataFormatted = createdtime.format('YYYY/MM/DD') + ' 发布'
+            } else {
+              item.createDataFormatted = createdtime.locale('zh-cn').fromNow() + ' 发布'
+            }
+            // item.createDate = moment(item.createDate).format('YYYY/MM/DD HH:mm')
+            // console.log(Number.parseInt(days))
+          })
+          this.setData({
+            activities: data
+          })
+        }
+
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  },
   onLoad: function () {
     wx.getSetting({
       success: res => {
@@ -103,38 +151,7 @@ Page({
         }
       }
     })
-    getRequest(`${server}/activities/${this.data.currentPage}/${this.data.pageSize}`, null)
-    .then(res => {
-      let { data } = res
-      if (data.status) {
-        data = this.sortData({ byId: this.data.byId, asc: this.data.asc }, data.param)
-        _.each(data, item => {
-          // console.log(item)
-          let { start, end } = item
-          let starttime = moment(start)
-          let endtime = moment(end)
-          let hours = moment(starttime - moment()).format('H')
-          if (24 > hours && 0 < hours) {
-            item.start = starttime.format('HH:mm')
-          }
-          hours = moment(endtime - moment()).format('H')
-          if (24 > hours && 0 < hours) {
-            item.end = endtime.format('HH:mm')
-          }
-          item.createDate = moment(item.createDate).format('YYYY/MM/DD HH:mm')
-          // console.log(Number.parseInt(hours))
-        })
-        this.setData({
-          activities: data
-        })
-      }
-      
-      console.log(res)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-    
+    this.onRefresh()
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -147,6 +164,23 @@ Page({
         this.setData({
           userInfo: res.userInfo,
           hasUserInfo: true
+        })
+        // 更新用户信息
+        getOpenId()
+        .then(openid => {
+          console.log(openid)
+          post(`${server}/user/update/${openid}/`, {
+            nickname: res.userInfo.nickName,
+            face: res.userInfo.avatarUrl
+          }).then(updateRes => {
+            console.log(updateRes)
+          })
+          .catch(err => {
+
+          })
+        })
+        .catch(err => {
+
         })
       }
     } else {

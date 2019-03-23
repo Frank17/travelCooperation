@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-cell-group": "../../miniprogram_npm/vant-weapp/cell-group",
+    "van-cell": "../../miniprogram_npm/vant-weapp/cell",
+    "van-icon": "../../miniprogram_npm/vant-weapp/icon",
+    "van-dialog": "../../miniprogram_npm/vant-weapp/dialog"
+  },
+  "navigationBarTitleText": "签到列表"
+}

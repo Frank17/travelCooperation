@@ -2,7 +2,8 @@ let __DEBUG__ = true
 
 const getServer = () => {
   if (__DEBUG__) {
-    return 'http://139.224.117.148:8000'
+    // .224.117.148
+    return 'http://47.103.52.176:8999'
   } else {
     return 'http://'
   }
@@ -94,7 +95,7 @@ const login = () => {
         // console.log(res)
         let { code } = res
         console.log('code：' + code)
-        post(`${getServer()}/user/login/${code}`)
+        post(`${getServer()}/user/login/${code}/`)
         .then(loginResult => {
           console.log(loginResult)
           // saveStorage('loginKey', )

@@ -75,3 +75,7 @@
   display: flex;
   font-size: 96rpx;
 }
+
+.loading-container {
+  background-color: transparent;
+}

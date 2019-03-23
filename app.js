@@ -9,7 +9,7 @@ App({
 
     login()
 
-    getOpenId().then(console.log)
+    getOpenId().then(console.log).catch(console.log)
     // 登录
     // wx.login({
     //   success: res => {
